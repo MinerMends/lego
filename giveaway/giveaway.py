@@ -161,8 +161,8 @@ class GiveawayPlugin(commands.Cog):
 
                 embed = message.embeds[0]
                 embed.description = (
-                    f"**#MendingArmy**\nClick <a:cup:802743072235454504> to enter!\n\n"
-                    f"Time Remaining: **{time_remaining}**"
+                    f"**#MendingArmy**\nClick <a:cup:802743072235454504> to enter! Inactive winners will be rerolled.\n\n"
+                    f"Giveaways Ending: **{time_remaining}**"
                 )
                 await message.edit(embed=embed)
                 del channel, guild
@@ -277,7 +277,7 @@ class GiveawayPlugin(commands.Cog):
         )
         embed.timestamp = datetime.fromtimestamp(giveaway_time)
         msg: discord.Message = await channel.send(embed=embed)
-        await msg.add_reaction("<a:cup:802743072235454504>")
+        await msg.add_reaction("🏆")
         giveaway_obj = {
             "item": giveaway_item.content,
             "winners": giveaway_winners,
@@ -341,7 +341,7 @@ class GiveawayPlugin(commands.Cog):
             return
 
         for r in message.reactions:
-            if r.emoji == "🎉":
+            if r.emoji == "🏆":
                 reactions = r
                 reacted_users = await reactions.users().flatten()
                 if len(reacted_users) <= 1:
@@ -376,7 +376,7 @@ class GiveawayPlugin(commands.Cog):
                 )
                 await message.edit(embed=embed)
                 await ctx.channel.send(
-                    f"🎉 Congratulations {winners_text}, you have won **{embed.title}**!"
+                    f"🏆 Congratulations {winners_text}, you have won **{embed.title}**!"
                 )
                 del winners_text, winners, winners_count, reacted_users, embed
                 break
