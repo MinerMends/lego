@@ -106,7 +106,7 @@ class GiveawayPlugin(commands.Cog):
                         if len(reacted_users) <= 1:
                             embed = message.embeds[0]
                             embed.description = (
-                                f"Giveaway has ended!\n\nSadly no one participated :("
+                                f"**#MendingArmy** | Giveaway Ended\n\nSadly no one participated :("
                             )
                             embed.set_footer(
                                 text=f"{giveaway['winners']} {'winners' if giveaway['winners'] > 1 else 'winner'} | "
@@ -135,14 +135,14 @@ class GiveawayPlugin(commands.Cog):
                         for winner in winners:
                             winners_text += f"<@{winner}> "
 
-                        embed.description = f"Giveaway has ended!\n\n**{'Winners' if giveaway['winners'] > 1 else 'Winner'}:** {winners_text} "
+                        embed.description = f"<a:cup:802743072235454504> **#MendingArmy** | **{'Winners' if giveaway['winners'] > 1 else 'Winner'}:** {winners_text} "
                         embed.set_footer(
                             text=f"{giveaway['winners']} {'winners' if giveaway['winners'] > 1 else 'winner'} | "
                             f"Ended at"
                         )
                         await message.edit(embed=embed)
                         await channel.send(
-                            f"🎉 Congratulations {winners_text}, you have won **{giveaway['item']}**!"
+                            f"<a:cup:802743072235454504> Congratulations {winners_text}, you have won **{giveaway['item']}**!"
                         )
                         try:
                             self.active_giveaways.pop(str(giveaway["message"]))
@@ -161,7 +161,7 @@ class GiveawayPlugin(commands.Cog):
 
                 embed = message.embeds[0]
                 embed.description = (
-                    f"React with 🎉 to enter the giveaway!\n\n"
+                    f"**#MendingArmy**\nClick <a:cup:802743072235454504> to enter!\n\n"
                     f"Time Remaining: **{time_remaining}**"
                 )
                 await message.edit(embed=embed)
@@ -269,7 +269,7 @@ class GiveawayPlugin(commands.Cog):
             return
 
         embed.description = (
-            f"React with 🎉 to enter the giveaway!\n\n"
+            f"React with <a:cup:802743072235454504> to enter the giveaway!\n\n"
             f"Time Remaining: **{datetime.fromtimestamp(giveaway_time).strftime('%d %H:%M:%S')}**"
         )
         embed.set_footer(
@@ -277,7 +277,7 @@ class GiveawayPlugin(commands.Cog):
         )
         embed.timestamp = datetime.fromtimestamp(giveaway_time)
         msg: discord.Message = await channel.send(embed=embed)
-        await msg.add_reaction("🎉")
+        await msg.add_reaction("<a:cup:802743072235454504>")
         giveaway_obj = {
             "item": giveaway_item.content,
             "winners": giveaway_winners,
