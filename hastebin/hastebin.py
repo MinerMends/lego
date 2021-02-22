@@ -22,13 +22,12 @@ class HastebinCog(commands.Cog):
             ) as resp:
                 key = (await resp.json())["key"]
                 embed = Embed(
-                    title="Your uploaded file",
-                    color=self.bot.main_color,
-                    description=f"{haste_url}/" + key,
+                    color=0x39e3c7,
+                    description=f"[Hastebin URL]({haste_url})/" + key,
                 )
         except (JSONDecodeError, ClientResponseError, IndexError):
             embed = Embed(
-                color=self.bot.main_color,
+                color=0x39e3c7,
                 description="Something went wrong. "
                 "We're unable to upload your text to hastebin.",
             )
