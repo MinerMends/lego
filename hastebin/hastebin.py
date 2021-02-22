@@ -22,8 +22,9 @@ class HastebinCog(commands.Cog):
             ) as resp:
                 key = (await resp.json())["key"]
                 embed = Embed(
+                    title="hi"
                     color=0x39e3c7,
-                    description=f"__**{haste_url}/" + key**__,
+                    description=f"{haste_url}/" + key,
                 )
         except (JSONDecodeError, ClientResponseError, IndexError):
             embed = Embed(
